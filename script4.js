@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 立即更新金币显示
             updateCoinDisplay();
             
-            message += ` - 你摇到了中国国旗！所有金币已被没收！损失了${lostCoins}金币`;
+            message += ` - 中国移民偷走了你的工作！😱损失了${lostCoins}金币`;
             resultDisplay.textContent = message;
             
             // 显示中国国旗惩罚特效
