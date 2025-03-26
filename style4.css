@@ -19,6 +19,8 @@ body {
     text-align: center;
     max-width: 800px;
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
 
 /* 老虎机外壳 */
@@ -26,10 +28,11 @@ body {
     background: linear-gradient(145deg, #c70039, #900c3f);
     border-radius: 30px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
+    overflow: visible; /* 改为visible，让子元素可以溢出 */
     position: relative;
     border: 8px solid #f1c40f;
     border-bottom-width: 20px;
+    z-index: 2;
 }
 
 /* 添加金币计数器样式 */
@@ -104,6 +107,8 @@ h1 {
     background: #581845;
     padding: 30px;
     position: relative;
+    z-index: 3;
+    overflow: visible; /* 确保子元素可以溢出 */
 }
 
 .slots-container {
@@ -236,13 +241,15 @@ h1 {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    position: relative;
+    z-index: 200; /* 提高z-index值 */
 }
 
 .lever-container {
     width: 60px;
     height: 150px;
     position: relative;
-    z-index: 100; /* 增加z-index值 */
+    z-index: 500; /* 大幅提高z-index值 */
 }
 
 .lever-base {
@@ -264,12 +271,12 @@ h1 {
     top: 15px;
     left: 22.5px;
     border-radius: 10px;
-    transform-origin: top center;
+    transform-origin: top center; /* 保持以顶部为旋转轴心 */
     transform: rotate(0deg);
     transition: transform 0.3s ease;
     cursor: pointer;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    z-index: 101; /* 确保摇杆比容器的z-index更高 */
+    z-index: 501; /* 确保摇杆比容器的z-index更高 */
 }
 
 .lever:after {
@@ -289,8 +296,8 @@ h1 {
 }
 
 .lever.pulled {
-    transform: rotate(60deg);
-    transform-origin: bottom center;
+    transform: rotate(60deg); /* 修改为正角度，表示向右下方旋转 */
+    transform-origin: top center; /* 确保以顶部为旋转轴心 */
     transition: transform 0.2s ease;
 }
 
