@@ -339,6 +339,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // 检查是否是中国国旗
         const isChinaFlag = emoji2 === '🇨🇳';
         
+        // 检查是否是俄罗斯国旗
+        const isRussiaFlag = emoji2 === '🇷🇺';
+        
         // 创建结果消息
         let message = `你的组合是: ${emoji1} ${emoji2} ${emoji3}`;
         
@@ -361,6 +364,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // 触发大奖特效
             showJackpotEffect();
+        } else if (isRussiaFlag) {
+            // 俄罗斯国旗奖励
+            reward = 10;
+            message += ` - 你没收了一位俄罗斯寡头的财产 +${reward}金币`;
+            resultDisplay.textContent = message;
+            
+            // 播放俄罗斯风格音效
+            const russiaSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-winning-notification-2018.mp3');
+            russiaSound.volume = 0.5;
+            russiaSound.play().catch(e => console.log('无法播放音效:', e));
         } else if (isEuropeanFlag) {
             reward = 3;
             message += ` - 你不准吃白食 +${reward}金币`;
