@@ -352,6 +352,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // 中国国旗惩罚 - 扣光所有金币
             const lostCoins = coins;
             coins = 0;
+            // 立即更新金币显示
+            updateCoinDisplay();
+            
             message += ` - 中国移民偷走了你的工作！😱损失了${lostCoins}金币`;
             resultDisplay.textContent = message;
             
