@@ -342,6 +342,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // 检查是否是俄罗斯国旗
         const isRussiaFlag = emoji2 === '🇷🇺';
         
+        // 添加非发达国家旗帜检查
+        const developedFlags = ['🇺🇸', '🇯🇵', '🇬🇧', '🇫🇷', '🇩🇪', '🇮🇹', '🇪🇸', '🇨🇦', '🇦🇺', '🇰🇷', '🇪🇺'];
+        const isDevelopingFlag = !developedFlags.includes(emoji2) && emoji2 !== '🇨🇳' && emoji2 !== '🇷🇺';
+        
         // 创建结果消息
         let message = `你的组合是: ${emoji1} ${emoji2} ${emoji3}`;
         
@@ -355,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 立即更新金币显示
             updateCoinDisplay();
             
-            message += ` - 中国移民偷走了你的工作！😱损失了${lostCoins}金币`;
+            message += ` - 你摇到了中国国旗！所有金币已被没收！损失了${lostCoins}金币`;
             resultDisplay.textContent = message;
             
             // 显示中国国旗惩罚特效
@@ -381,6 +385,16 @@ document.addEventListener('DOMContentLoaded', () => {
             reward = 3;
             message += ` - 你不准吃白食 +${reward}金币`;
             resultDisplay.textContent = message;
+        } else if (isDevelopingFlag) {
+            // 非发达国家旗帜奖励
+            reward = 1;
+            message += ` - 这些屎坑国家👎🏻 +${reward}金币`;
+            resultDisplay.textContent = message;
+
+            // 播放简单奖励音效
+            const smallRewardSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-positive-interface-beep-221.mp3');
+            smallRewardSound.volume = 0.4;
+            smallRewardSound.play().catch(e => console.log('无法播放音效:', e));
         } else {
             // 添加一些随机的有趣评论
             const comments = [
